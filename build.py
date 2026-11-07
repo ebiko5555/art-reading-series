@@ -29,7 +29,7 @@ body+='''</div><p id="empty" class="empty" hidden>該当する記事がありま
 for i,a in enumerate(D):
  sections=a.get('sections',[]);sources=a.get('sources',[])
  b=f'<div class="breadcrumbs"><a href="../#series">連載一覧</a>　/　第{i+1:02}話</div><section class="article-top"><div class="eyebrow">Chapter {i+1:02} / {e(category_names.get(cat(a),cat(a)))}</div><h1>{e(a.get("headline",a["title"]))}</h1><div class="artist">{e(a["artist"])}　《{e(a["title"])}》</div><p class="lead">{e(a.get("lead",""))}</p></section>'
- if a.get('updated'): b+=f'<p class="intro-note">追記：{e(a["updated"])} · 重さと張り方について</p>'
+ if a.get('updated'): b+=f'<p class="intro-note">追記：{e(a["updated"])}</p>'
  b+='<div class="article-layout"><aside class="toc" aria-label="この記事の目次">この話で読むこと<ol>'
  for j,s in enumerate(sections):b+=f'<li><a href="{chr(35)}{e(s.get("id",f"s{j}"))}">{e(s["heading"])}</a></li>'
  b+='<li><a href="#sources">資料をたどる</a></li></ol></aside><article class="reading">'
@@ -53,5 +53,6 @@ for i,a in enumerate(D):
  if i+1<len(D):b+=f'<a href="{e(D[i+1]["id"])}.html">次の話 → {e(D[i+1]["artist"])}</a>'
  else:b+='<a href="../#series">連載一覧へ →</a>'
  b+='</nav></article></div>'
+ if a.get('updated'): b=b.replace('確認日：2026年11月7日。','初稿確認：2026年11月7日。追記資料の確認：'+e(a['updated'])+'。')
  (P/'articles'/f'{a["id"]}.html').write_text(shell(a.get('headline',a['title']),b,True))
 print(f'Built {len(D)} articles and index.')
