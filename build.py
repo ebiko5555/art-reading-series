@@ -17,7 +17,7 @@ hero='<div class="type-art" aria-hidden="true">見る、<br>読む。</div>'
 first=D[0] if D else {}
 if first.get('image',{}).get('local'):
  im=first['image'];hero=f'<img src="{e(im["local"])}" alt="{e(first["title"])}"><figcaption>{e(im.get("credit",""))}</figcaption>'
-body=f'''<section class="hero"><div><div class="eyebrow">A small reader on art / 01—{len(D):02}</div><h1>知っている作品を、<br>もう一度、<br>見つめてみる。</h1><p>手の形、布の傷、空っぽの椅子。<br>作品のどこを見ると、その表現が見えてくるのか。<br>公式資料をひもときながら、一作ずつ、ゆっくり読みます。</p><a class="button" href="articles/{e(first.get('id',''))}.html">第1話から読む　↗</a></div><figure class="hero-art">{hero}</figure></section><section id="series"><div class="section-title"><h2>作品をめぐる連載</h2><span id="count">{len(D)}編</span></div><p class="intro-note">順番に読んでも、気になる作品からでも。各話の「公式画像を見る」を開いて、本文と見比べてみてください。作品画像の転載は、利用条件を確認できたものに限っています。</p><div class="tools"><input type="search" id="search" aria-label="作家名や作品名で探す" placeholder="作家・作品・気になる言葉で探す"><button class="filter" aria-pressed="true" data-filter="all">すべて</button>'''
+body=f'''<section class="hero"><div><div class="eyebrow">A small reader on art / 01—{len(D):02}</div><h1>知っている作品を、<br>もう一度、<br>見つめてみる。</h1><p>手の形、布の傷、空っぽの箱。<br>作品のどこを見ると、その表現が見えてくるのか。<br>公式資料をひもときながら、一作ずつ、ゆっくり読みます。</p><a class="button" href="articles/{e(first.get('id',''))}.html">第1話から読む　↗</a></div><figure class="hero-art">{hero}</figure></section><section id="series"><div class="section-title"><h2>作品をめぐる連載</h2><span id="count">{len(D)}編</span></div><p class="intro-note">順番に読んでも、気になる作品からでも。各話の「作品画像・参照ページを見る」を開いて、本文と見比べてみてください。作品画像の転載は、利用条件を確認できたものに限っています。</p><div class="tools"><input type="search" id="search" aria-label="作家名や作品名で探す" placeholder="作家・作品・気になる言葉で探す"><button class="filter" aria-pressed="true" data-filter="all">すべて</button>'''
 for k,v in category_names.items():body+=f'<button class="filter" aria-pressed="false" data-filter="{k}">{v}</button>'
 body+='</div><div class="entries">'
 for i,a in enumerate(D):
@@ -40,7 +40,7 @@ for i,a in enumerate(D):
  im=a.get('image',{})
  if im.get('local'):b+=f'<figure class="work-image"><img src="../{e(im["local"])}" alt="{e(im.get("alt",a["title"]))}"><figcaption>{e(im.get("credit",""))} / {e(im.get("rights",""))}</figcaption></figure>'
  image_url=im.get('url') or a.get('official_image_url') or (sources[0]['url'] if sources else '')
- if image_url:b+=f'<a class="art-link" href="{e(image_url)}" target="_blank" rel="noopener noreferrer"><strong>公式画像・作品ページを見る　↗</strong><small>別のタブで開きます。本文と見比べてご覧ください。</small></a>'
+ if image_url:b+=f'<a class="art-link" href="{e(image_url)}" target="_blank" rel="noopener noreferrer"><strong>作品画像・参照ページを見る　↗</strong><small>別のタブで開きます。本文と見比べてご覧ください。</small></a>'
  for j,s in enumerate(sections):b+=f'<section id="s{j}"><h2>{e(s["heading"])}</h2>{paragraphs(s.get("paragraphs",s.get("text",[])))}</section>'
  cautions=a.get('cautions',[])
  if cautions:b+='<aside class="caution"><h3>ここは、言い切らない</h3>'+paragraphs(cautions)+'</aside>'
