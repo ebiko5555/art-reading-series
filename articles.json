@@ -506,6 +506,15 @@
           "ここでの違いは、反復を失敗させる邪魔者ではない。長さが少し違うと、下端の高さが変わり、次の一枚へ移る視線の速さも変わる。薄さや透け方の差によって、同じ列の中に手前と奥、重さと軽さが生まれる。",
           "一本の基準線に全てを合わせようとせず、一枚ずつの輪郭を追ってから列全体へ戻ってみたい。そうすると「揃っている」と「揃っていない」が同時に成り立つ。完成とは差を消すことなのか。それとも、差を保ったまま一緒に存在させることなのか。この作品は、材料の見え方からその感覚を揺さぶってくる。これは作品を読むための問いで、作者の答えを代弁するものではない。"
         ]
+      },
+      {
+        "id": "weight-and-tension",
+        "heading": "追記：重さが、薄い面を張らせている",
+        "paragraphs": [
+          "オーストラリア国立美術館の解説は、中央のラテックスで覆われたチーズクロスと、両端の半透明のファイバーグラスを区別している。重要なのは色や透け方の違いだけではない。より重いファイバーグラスの部分が、壊れやすい中央部分を引っ張って張らせている、と説明されている。これは所蔵館が示す材料の働きについての説明だ。",
+          "この説明を手がかりに画像を見ると、上下の端と中央の面は、ただ違う素材を並べただけではないと気づく。重さによって引かれることで、薄い面の姿が成り立っている。「重さが形をつくる」と捉えると、柔らかく見える面にも張力を想像できる。ここからは、資料をもとにした鑑賞の読みである。",
+          "もう一度、中央の黄褐色の面から、光を通す端の部分へ視線を動かしてみたい。素材が切り替わる境目と、そこから面が張る様子を見比べる。画像から力の大きさを測れるわけではないが、見た目の軽さと、実際に形を支える重さを別々に考える入口になる。"
+        ]
       }
     ],
     "cautions": [
@@ -516,13 +525,29 @@
         "label": "National Gallery of Art｜Art Since 1950 教材",
         "url": "https://www.nga.gov/sites/default/files/migrate_images/content/dam/ngaweb/education/learning-resources/teaching-packets/pdfs/artsince1950.pdf#page=50",
         "note": "完成作の小図は50頁、試作の大図は51頁、長い一枚についての本人の説明は52頁。"
+      },
+      {
+        "label": "National Gallery of Australia｜Soft sculpture: Contingent",
+        "url": "https://digital.nga.gov.au/archive/exhibition/softsculpture/default.cfm%3Firn%3D49353%26bioartistirn%3D15232%26mnuid%3D3%26viewid%3D2.html",
+        "note": "11月8日追記の出典。中央と両端の材質、重いファイバーグラスが薄い中央部分を張らせる働き。"
+      },
+      {
+        "label": "National Gallery of Australia｜American Masters: Contingent",
+        "url": "https://digital.nga.gov.au/archive/americanmasters/works.cfm%3Fwrkirn%3D49353.html",
+        "note": "Lucina Wardによる解説。同じ材料の働きを説明する所蔵館の別ページ。"
+      },
+      {
+        "label": "Google Arts & Culture｜Contingent（所蔵館提供）",
+        "url": "https://artsandculture.google.com/asset/contingent-eva-hesse/DAEXNYC0E8pFIw?hl=en",
+        "note": "オーストラリア国立美術館提供の完成作画像・作品情報。© The Estate of Eva Hesse, Courtesy Hauser & Wirth。転載せずリンク。"
       }
     ],
     "image": {
-      "url": "https://www.nga.gov/sites/default/files/migrate_images/content/dam/ngaweb/education/learning-resources/teaching-packets/pdfs/artsince1950.pdf#page=50",
+      "url": "https://artsandculture.google.com/asset/contingent-eva-hesse/DAEXNYC0E8pFIw?hl=en",
       "rights": "© The Estate of Eva Hesse。転載許諾未確認のため公式資料リンク。"
     },
-    "reading_minutes": 4
+    "reading_minutes": 5,
+    "updated": "2026年11月8日"
   },
   {
     "id": "salcedo-atrabiliarios",

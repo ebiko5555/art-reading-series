@@ -29,8 +29,9 @@ body+='''</div><p id="empty" class="empty" hidden>該当する記事がありま
 for i,a in enumerate(D):
  sections=a.get('sections',[]);sources=a.get('sources',[])
  b=f'<div class="breadcrumbs"><a href="../#series">連載一覧</a>　/　第{i+1:02}話</div><section class="article-top"><div class="eyebrow">Chapter {i+1:02} / {e(category_names.get(cat(a),cat(a)))}</div><h1>{e(a.get("headline",a["title"]))}</h1><div class="artist">{e(a["artist"])}　《{e(a["title"])}》</div><p class="lead">{e(a.get("lead",""))}</p></section>'
+ if a.get('updated'): b+=f'<p class="intro-note">追記：{e(a["updated"])} · 重さと張り方について</p>'
  b+='<div class="article-layout"><aside class="toc" aria-label="この記事の目次">この話で読むこと<ol>'
- for j,s in enumerate(sections):b+=f'<li><a href="#s{j}">{e(s["heading"])}</a></li>'
+ for j,s in enumerate(sections):b+=f'<li><a href="{chr(35)}{e(s.get("id",f"s{j}"))}">{e(s["heading"])}</a></li>'
  b+='<li><a href="#sources">資料をたどる</a></li></ol></aside><article class="reading">'
  b+='<div class="art-facts"><dl>'
  for label,key in [('作家','artist'),('作品','title'),('制作年','year'),('媒体','medium')]:
@@ -41,7 +42,7 @@ for i,a in enumerate(D):
  if im.get('local'):b+=f'<figure class="work-image"><img src="../{e(im["local"])}" alt="{e(im.get("alt",a["title"]))}"><figcaption>{e(im.get("credit",""))} / {e(im.get("rights",""))}</figcaption></figure>'
  image_url=im.get('url') or a.get('official_image_url') or (sources[0]['url'] if sources else '')
  if image_url:b+=f'<a class="art-link" href="{e(image_url)}" target="_blank" rel="noopener noreferrer"><strong>作品画像・参照ページを見る　↗</strong><small>別のタブで開きます。本文と見比べてご覧ください。</small></a>'
- for j,s in enumerate(sections):b+=f'<section id="s{j}"><h2>{e(s["heading"])}</h2>{paragraphs(s.get("paragraphs",s.get("text",[])))}</section>'
+ for j,s in enumerate(sections):b+=f'<section id="{e(s.get("id",f"s{j}"))}"><h2>{e(s["heading"])}</h2>{paragraphs(s.get("paragraphs",s.get("text",[])))}</section>'
  cautions=a.get('cautions',[])
  if cautions:b+='<aside class="caution"><h3>ここは、言い切らない</h3>'+paragraphs(cautions)+'</aside>'
  b+='<section id="sources"><h2>資料をたどる</h2><ol class="sources">'
