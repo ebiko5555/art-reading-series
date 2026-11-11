@@ -10,8 +10,8 @@ def paragraphs(v):
  return ''.join('<p>'+e(x)+'</p>' for x in v)
 def shell(title,body,sub=False):
  root='../' if sub else './'
- return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#243a33"><meta name="description" content="手・素材・身体・記憶をめぐる美術の読み物。公式資料をたどり、作品をもう一度見るための連載。"><title>{e(title)} | 作品の、もう一歩奥へ</title><link rel="stylesheet" href="{root}style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23243a33'/%3E%3Cpath d='M17 14v36m15-36v36m15-36v36' stroke='%23f5f3eb' stroke-width='2'/%3E%3C/svg%3E"></head><body id="top"><header><a class="brand" href="{root}">作品の、もう一歩奥へ<small>LOOK CLOSER, READ DEEPER</small></a><nav aria-label="主要ナビゲーション"><a href="{root}#series">連載一覧</a><a href="{root}#about">読み方</a></nav></header><main class="wrap">{body}<footer class="footer"><span>作品の、もう一歩奥へ<br>美術館・作家の資料から読み直す、小さな美術読本。</span><span>資料確認：2026年11月7日<br><a href="#top" class="backtop">ページの先頭へ ↑</a></span></footer></main><script src="{root}app.js"></script></body></html>'''
-category_names={'hands':'手と身体','material':'素材と行為','memory':'記憶と不在'}
+ return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#243a33"><meta name="description" content="手・素材・身体・記憶をめぐる美術の読み物。公式資料をたどり、作品をもう一度見るための連載。"><title>{e(title)} | 作品の、もう一歩奥へ</title><link rel="stylesheet" href="{root}style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23243a33'/%3E%3Cpath d='M17 14v36m15-36v36m15-36v36' stroke='%23f5f3eb' stroke-width='2'/%3E%3C/svg%3E"></head><body id="top"><header><a class="brand" href="{root}">作品の、もう一歩奥へ<small>LOOK CLOSER, READ DEEPER</small></a><nav aria-label="主要ナビゲーション"><a href="{root}#series">連載一覧</a><a href="{root}#about">読み方</a></nav></header><main class="wrap">{body}<footer class="footer"><span>作品の、もう一歩奥へ<br>美術館・作家の資料から読み直す、小さな美術読本。</span><span>資料確認日は各話末尾に記載<br><a href="#top" class="backtop">ページの先頭へ ↑</a></span></footer></main><script src="{root}app.js"></script></body></html>'''
+category_names={'hands':'手と身体','material':'素材と行為','memory':'記憶と不在','color':'色と知覚'}
 def cat(a): return a.get('category','material')
 hero='<div class="type-art" aria-hidden="true">見る、<br>読む。</div>'
 first=D[0] if D else {}
@@ -42,6 +42,7 @@ for i,a in enumerate(D):
  if im.get('local'):b+=f'<figure class="work-image"><img src="../{e(im["local"])}" alt="{e(im.get("alt",a["title"]))}"><figcaption>{e(im.get("credit",""))} / {e(im.get("rights",""))}</figcaption></figure>'
  image_url=im.get('url') or a.get('official_image_url') or (sources[0]['url'] if sources else '')
  if image_url:b+=f'<a class="art-link" href="{e(image_url)}" target="_blank" rel="noopener noreferrer"><strong>作品画像・参照ページを見る　↗</strong><small>別のタブで開きます。本文と見比べてご覧ください。</small></a>'
+ for extra in a.get('related_images',[]):b+=f'<a class="art-link" href="{e(extra["url"])}" target="_blank" rel="noopener noreferrer"><strong>{e(extra["label"])}　↗</strong><small>別のタブで開きます。</small></a>'
  for j,s in enumerate(sections):b+=f'<section id="{e(s.get("id",f"s{j}"))}"><h2>{e(s["heading"])}</h2>{paragraphs(s.get("paragraphs",s.get("text",[])))}</section>'
  cautions=a.get('cautions',[])
  if cautions:b+='<aside class="caution"><h3>ここは、言い切らない</h3>'+paragraphs(cautions)+'</aside>'
@@ -53,6 +54,7 @@ for i,a in enumerate(D):
  if i+1<len(D):b+=f'<a href="{e(D[i+1]["id"])}.html">次の話 → {e(D[i+1]["artist"])}</a>'
  else:b+='<a href="../#series">連載一覧へ →</a>'
  b+='</nav></article></div>'
+ if a.get('checked'): b=b.replace('確認日：2026年11月7日。','確認日：'+e(a['checked'])+'。')
  if a.get('updated'): b=b.replace('確認日：2026年11月7日。','初稿確認：2026年11月7日。追記資料の確認：'+e(a['updated'])+'。')
  (P/'articles'/f'{a["id"]}.html').write_text(shell(a.get('headline',a['title']),b,True))
 print(f'Built {len(D)} articles and index.')
